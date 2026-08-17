@@ -41,7 +41,7 @@ dashboard) without touching the core logic.
 
 ![Report Screenshot-monthly_trend](reports/monthly_trend.png)
 ![Report Screenshot-top_products](reports/top_products.png)
-![Report html](reports/report_20260817_1531.png)
+![Report html](reports/report_20260817_1531.html)
 
 ## 🛠️ Tech Stack
 
