@@ -42,7 +42,6 @@ dashboard) without touching the core logic.
 ![Report Screenshot-monthly_trend](reports/monthly_trend.png)
 ![Report Screenshot-top_products](reports/top_products.png)
 ![Report Screenshot-discount_impact](reports/discount_impact.png)
-![Report Screenshot-discount_impact](reports/discount_impact.png)
 
 ![Report Screenshot-html](reports/Screenshot_2026818_015103.png)
 ![Report Screenshot-html](reports/Screenshot_2026818_015141.png)
