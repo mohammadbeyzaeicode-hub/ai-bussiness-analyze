@@ -35,15 +35,40 @@ def plot_top_products(top_df, save_name="top_products.png") -> str:
     plt.close(fig)
     return save_name
 
+def plot_discount_impact(discount_df, save_name="discount_impact.png") -> str:
+    """نمودار میله‌ای رابطه بازه تخفیف با حاشیه سود"""
+    fig, ax = plt.subplots(figsize=(9, 4))
+    colors = ["#059669" if v >= 0 else "#dc2626" for v in discount_df["avg_profit_margin"]]
+    ax.bar(discount_df["discount_band"].astype(str), discount_df["avg_profit_margin"], color=colors)
+    ax.axhline(0, color="#6b7280", linewidth=0.8)
+    ax.set_title("حاشیه سود بر اساس بازه تخفیف")
+    ax.set_ylabel("حاشیه سود (%)")
+    fig.tight_layout()
 
-def build_html_report(summary_stats: dict, ai_text: str, chart1: str, chart2: str,
-                       region_perf, save_name: str = None) -> str:
+    path = REPORTS_DIR / save_name
+    fig.savefig(path, dpi=120)
+    plt.close(fig)
+    return save_name
+
+def build_html_report(summary_stats: dict, ai_text: str, chart1: str, chart2: str, chart3: str,
+                       region_perf, customer_data: dict, loss_makers,
+                       save_name: str = None) -> str:
     """همه‌چیز رو توی یک فایل HTML قابل‌ارائه ترکیب می‌کنه"""
     if save_name is None:
         save_name = f"report_{datetime.now().strftime('%Y%m%d_%H%M')}.html"
 
     region_table_html = region_perf.to_html(index=False, classes="table")
-
+    top_customers_html = customer_data["top_customers"].to_html(index=False, classes="table")
+    at_risk_html = (
+        customer_data["at_risk_customers"].to_html(index=False, classes="table")
+        if not customer_data["at_risk_customers"].empty
+        else "<p>موردی یافت نشد</p>"
+    )
+    loss_html = (
+        loss_makers.to_html(index=False, classes="table")
+        if not loss_makers.empty
+        else "<p>هیچ زیرمجموعه‌ای ضرر خالص نداشته</p>"
+    )
     # تبدیل متن AI (که با \n \n جدا شده) به پاراگراف‌های HTML
     ai_html = "".join(f"<p>{line}</p>" for line in ai_text.split("\n") if line.strip())
 
@@ -86,7 +111,17 @@ def build_html_report(summary_stats: dict, ai_text: str, chart1: str, chart2: st
 
         <h2>پرفروش‌ترین محصولات</h2>
         <img src="{chart2}" alt="محصولات پرفروش">
+        <h2>حاشیه سود بر اساس بازه تخفیف</h2>
+        <img src="{chart3}" alt="تأثیر تخفیف بر سود">
 
+        <h2>مشتریان برتر</h2>
+        {top_customers_html}
+
+        <h2>⚠️ مشتریان در معرض ریزش</h2>
+        {at_risk_html}
+
+        <h2>⚠️ زیرمجموعه‌های ضررده</h2>
+        {loss_html}
         <h2>عملکرد مناطق</h2>
         {region_table_html}
     </body>

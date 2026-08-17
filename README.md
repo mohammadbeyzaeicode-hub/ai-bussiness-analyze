@@ -41,7 +41,14 @@ dashboard) without touching the core logic.
 
 ![Report Screenshot-monthly_trend](reports/monthly_trend.png)
 ![Report Screenshot-top_products](reports/top_products.png)
-![Report html](reports/report_20260817_1531.html)
+![Report Screenshot-discount_impact](reports/discount_impact.png)
+![Report Screenshot-discount_impact](reports/discount_impact.png)
+
+![Report Screenshot-html](reports/Screenshot_2026818_015103.png)
+![Report Screenshot-html](reports/Screenshot_2026818_015141.png)
+![Report Screenshot-html](reports/Screenshot_2026818_015148.png)
+
+
 
 ## 🛠️ Tech Stack
 
@@ -118,3 +125,5 @@ MIT
 ابزار تحلیل داده واقعی و کاربردی — نه فقط یک اسکریپت آموزشی.
 
 نحوه اجرا و جزئیات فنی در بخش‌های بالا (به انگلیسی) توضیح داده شده است.
+
+![Report html](reports/report_20260818_0148.html)

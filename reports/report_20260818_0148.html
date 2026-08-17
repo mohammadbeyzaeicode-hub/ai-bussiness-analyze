@@ -1,0 +1,180 @@
+
+    <!DOCTYPE html>
+    <html lang="fa" dir="rtl">
+    <head>
+    <meta charset="UTF-8">
+    <title>گزارش تحلیل کسب‌وکار</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; max-width: 900px; margin: 40px auto; color: #1f2937; }
+        h1 { color: #111827; }
+        .kpi-box { display: flex; gap: 16px; flex-wrap: wrap; margin: 20px 0; }
+        .kpi { background: #f3f4f6; padding: 16px 20px; border-radius: 10px; flex: 1; min-width: 140px; }
+        .kpi .value { font-size: 22px; font-weight: bold; color: #2563eb; }
+        .kpi .label { font-size: 13px; color: #6b7280; }
+        .ai-box { background: #eff6ff; border-right: 4px solid #2563eb; padding: 16px 20px; border-radius: 8px; margin: 20px 0; }
+        table.table { border-collapse: collapse; width: 100%; margin: 10px 0; }
+        table.table th, table.table td { border: 1px solid #e5e7eb; padding: 8px 12px; text-align: right; }
+        table.table th { background: #f9fafb; }
+        img { max-width: 100%; border-radius: 8px; margin: 10px 0; }
+    </style>
+    </head>
+    <body>
+        <h1>📊 گزارش تحلیل کسب‌وکار</h1>
+        <p style="color:#6b7280">تولید شده در 2026-08-18 01:48</p>
+
+        <div class="kpi-box">
+            <div class="kpi"><div class="value">$2,297,201</div><div class="label">درآمد کل</div></div>
+            <div class="kpi"><div class="value">$286,397</div><div class="label">سود کل</div></div>
+            <div class="kpi"><div class="value">12.47%</div><div class="label">حاشیه سود</div></div>
+            <div class="kpi"><div class="value">5,009</div><div class="label">تعداد سفارش</div></div>
+        </div>
+
+        <h2>🤖 تحلیل هوش مصنوعی</h2>
+        <div class="ai-box"><p>### گزارش تحلیلی عملکرد فروش</p><p>#### خلاصه وضعیت</p><p>فروشگاه در بازه زمانی 2014 تا 2017 با درآمد کل 2,297,200.86 دلار و سود 286,397.02 دلار، حاشیه سود 12.47 درصد را تجربه کرده است. با وجود موفقیت‌های قابل توجه در برخی ماه‌ها، روند فروش در 6 ماه اخیر نوسانات زیادی را نشان می‌دهد که نیازمند بررسی دقیق‌تری است.</p><p>#### ۳ نکته کلیدی</p><p>1. **نوسانات شدید در درآمد:** فروش در ماه‌های اخیر به شدت نوسان داشته و به‌ویژه در ماه‌های نوامبر و دسامبر 2017 با رشد 52.3 درصدی و کاهش 29.2 درصدی مواجه شده است.</p><p>2. **محصولات ضررده:** برخی زیرمجموعه‌ها مانند "Tables" و "Bookcases" به طور مداوم ضرر داشته‌اند و نیاز به بازنگری در استراتژی فروش آن‌ها وجود دارد.</p><p>3. **تأثیر تخفیف‌ها بر سود:** تخفیف‌های بالای 20 درصد به وضوح به زیان منجر شده و حاشیه سود را به شدت کاهش داده است.</p><p>#### هشدارها یا ریسک‌ها</p><p>تخفیف‌های بالای 20 درصد به طور مداوم موجب زیان شده‌اند. همچنین، محصولات ضررده باید به سرعت مورد بررسی قرار گیرند تا از تداوم ضرر جلوگیری شود.</p><p>#### مشتریان در معرض ریزش</p><p>مشتریان مانند "Tamara Chand" و "Raymond Buch" که مدت زیادی است خرید نکرده‌اند، نیاز به اقدام فوری دارند. باید استراتژی‌های بازاریابی و ارتباطی برای ترغیب آن‌ها به خرید مجدد طراحی شود.</p><p>#### ۲ پیشنهاد عملی</p><p>1. **محدود کردن تخفیف‌ها:** پیشنهاد می‌شود تخفیف‌های بالای 20 درصد به طور موقت متوقف شده و تخفیف‌های پایین‌تر از 10 درصد برای جذب مشتریان جدید و حفظ حاشیه سود بیشتر مورد استفاده قرار گیرد.</p><p>2. **بررسی و تصمیم‌گیری درباره محصولات ضررده:** پیشنهاد می‌شود محصولات ضررده به دقت بررسی شده و در صورت لزوم از سبد فروش حذف شوند یا استراتژی‌های جدیدی برای بازاریابی آن‌ها طراحی گردد.</p></div>
+
+        <h2>روند فروش ماهانه</h2>
+        <img src="monthly_trend.png" alt="روند فروش">
+
+        <h2>پرفروش‌ترین محصولات</h2>
+        <img src="top_products.png" alt="محصولات پرفروش">
+        <h2>حاشیه سود بر اساس بازه تخفیف</h2>
+        <img src="discount_impact.png" alt="تأثیر تخفیف بر سود">
+
+        <h2>مشتریان برتر</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Customer_Name</th>
+      <th>total_spent</th>
+      <th>order_count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Sean Miller</td>
+      <td>25043.050</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Tamara Chand</td>
+      <td>19052.218</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <td>Raymond Buch</td>
+      <td>15117.339</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Tom Ashbrook</td>
+      <td>14595.620</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <td>Adrian Barton</td>
+      <td>14473.571</td>
+      <td>10</td>
+    </tr>
+  </tbody>
+</table>
+
+        <h2>⚠️ مشتریان در معرض ریزش</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Customer_Name</th>
+      <th>total_spent</th>
+      <th>days_since_last_purchase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tamara Chand</td>
+      <td>19052.218</td>
+      <td>399</td>
+    </tr>
+    <tr>
+      <td>Raymond Buch</td>
+      <td>15117.339</td>
+      <td>96</td>
+    </tr>
+    <tr>
+      <td>Sanjit Chand</td>
+      <td>14142.334</td>
+      <td>349</td>
+    </tr>
+    <tr>
+      <td>Becky Martin</td>
+      <td>11789.630</td>
+      <td>307</td>
+    </tr>
+    <tr>
+      <td>Seth Vernon</td>
+      <td>11470.950</td>
+      <td>101</td>
+    </tr>
+  </tbody>
+</table>
+
+        <h2>⚠️ زیرمجموعه‌های ضررده</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Sub_Category</th>
+      <th>total_sales</th>
+      <th>total_profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Tables</td>
+      <td>206965.5320</td>
+      <td>-17725.4811</td>
+    </tr>
+    <tr>
+      <td>Bookcases</td>
+      <td>114879.9963</td>
+      <td>-3472.5560</td>
+    </tr>
+    <tr>
+      <td>Supplies</td>
+      <td>46673.5380</td>
+      <td>-1189.0995</td>
+    </tr>
+  </tbody>
+</table>
+        <h2>عملکرد مناطق</h2>
+        <table border="1" class="dataframe table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>Region</th>
+      <th>Sales</th>
+      <th>Profit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>West</td>
+      <td>725457.8245</td>
+      <td>108418.4489</td>
+    </tr>
+    <tr>
+      <td>East</td>
+      <td>678781.2400</td>
+      <td>91522.7800</td>
+    </tr>
+    <tr>
+      <td>Central</td>
+      <td>501239.8908</td>
+      <td>39706.3625</td>
+    </tr>
+    <tr>
+      <td>South</td>
+      <td>391721.9050</td>
+      <td>46749.4303</td>
+    </tr>
+  </tbody>
+</table>
+    </body>
+    </html>
+    

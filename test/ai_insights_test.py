@@ -2,22 +2,18 @@ import sys
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
  
-
-# test_ai.py (موقتی)
+# test_new_analysis.py (موقتی)
 from src.analysis import *
-from src.ai_insights import build_analysis_prompt, get_ai_insights
 
 df = load_sales_data()
-monthly = monthly_revenue_trend(df)
 
-prompt = build_analysis_prompt(
-    summary_stats=generate_summary_stats(df),
-    monthly_trend=monthly,
-    top_prods=top_products(df),
-    anomalies=detect_anomalies(monthly),
-    region_perf=region_performance(df),
-)
+print("--- تحلیل مشتری ---")
+cust = customer_analysis(df)
+print("VIP:\n", cust["top_customers"])
+print("\nAt Risk:\n", cust["at_risk_customers"])
 
-print("--- در حال ارسال به AI ---")
-result = get_ai_insights(prompt)
-print(result)
+print("\n--- تأثیر تخفیف ---")
+print(discount_impact_analysis(df))
+
+print("\n--- دسته‌های ضررده ---")
+print(loss_making_subcategories(df))

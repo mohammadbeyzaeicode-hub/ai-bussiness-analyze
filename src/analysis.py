@@ -78,3 +78,73 @@ def generate_summary_stats(df: pd.DataFrame) -> dict:
         "date_range": f"{df['Order_Date'].min().date()} to {df['Order_Date'].max().date()}",
         "avg_order_value": round(df["Sales"].sum() / df["Order_ID"].nunique(), 2),
     }
+    
+    
+# ---------- تحلیل مشتری (RFM ساده) ----------
+
+def customer_analysis(df: pd.DataFrame, top_n: int = 5) -> dict:
+    """
+    خلاصه‌ای از رفتار مشتری‌ها: مشتریان VIP، تعداد خرید، و مشتریانی
+    که مدتی است خرید نکرده‌اند (ریسک ریزش)
+    """
+    last_date = df["Order_Date"].max()
+
+    customer_summary = df.groupby(["Customer_ID", "Customer_Name"]).agg(
+        total_spent=("Sales", "sum"),
+        order_count=("Order_ID", "nunique"),
+        last_purchase=("Order_Date", "max"),
+    ).reset_index()
+
+    customer_summary["days_since_last_purchase"] = (
+        last_date - customer_summary["last_purchase"]
+    ).dt.days
+
+    top_customers = customer_summary.sort_values("total_spent", ascending=False).head(top_n)
+
+    # مشتریانی که بیش از ۹۰ روز خرید نکرده‌اند ولی قبلاً مشتری فعالی بودند (حداقل ۲ خرید)
+    at_risk = customer_summary[
+        (customer_summary["days_since_last_purchase"] > 90)
+        & (customer_summary["order_count"] >= 2)
+    ].sort_values("total_spent", ascending=False).head(top_n)
+
+    return {
+        "top_customers": top_customers[["Customer_Name", "total_spent", "order_count"]],
+        "at_risk_customers": at_risk[["Customer_Name", "total_spent", "days_since_last_purchase"]],
+        "avg_orders_per_customer": round(customer_summary["order_count"].mean(), 2),
+        "total_unique_customers": len(customer_summary),
+    }
+
+
+# ---------- تأثیر تخفیف بر سود ----------
+
+def discount_impact_analysis(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    رابطه بین بازه تخفیف و سود را بررسی می‌کند تا مشخص شود
+    از چه درصدی به بعد، تخفیف باعث ضرر می‌شود
+    """
+    df = df.copy()
+    bins = [-0.01, 0, 0.1, 0.2, 0.3, 0.5, 1.0]
+    labels = ["0%", "1-10%", "11-20%", "21-30%", "31-50%", "50%+"]
+    df["discount_band"] = pd.cut(df["Discount"], bins=bins, labels=labels)
+
+    result = df.groupby("discount_band", observed=True).agg(
+        total_sales=("Sales", "sum"),
+        total_profit=("Profit", "sum"),
+        avg_profit_margin=("Profit", lambda x: round((x.sum() / df.loc[x.index, "Sales"].sum()) * 100, 1)),
+        order_count=("Order_ID", "nunique"),
+    ).reset_index()
+
+    return result
+
+
+# ---------- محصولات/دسته‌های ضررده ----------
+
+def loss_making_subcategories(df: pd.DataFrame) -> pd.DataFrame:
+    """دسته‌های فرعی که مجموع سودشان منفی است"""
+    sub_cat = df.groupby("Sub_Category").agg(
+        total_sales=("Sales", "sum"),
+        total_profit=("Profit", "sum"),
+    ).reset_index()
+
+    losers = sub_cat[sub_cat["total_profit"] < 0].sort_values("total_profit")
+    return losers    
